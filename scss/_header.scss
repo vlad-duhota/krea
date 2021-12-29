@@ -1,0 +1,145 @@
+#header{
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    width: 100%;
+    padding-top: 95px;
+    @media (max-width:768px) {
+        padding-top: 55px;
+    }
+
+    @media (max-width:578px) {
+        padding-top: 25px;
+    }
+
+    color: $white;
+    .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+}
+
+.menu{
+    @media (max-width:578px) {
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        top: -100vh;
+        left: 0;
+        z-index: 3;
+        background: url(../img/hero-bg.jpg);
+        filter: grayscale(80%);
+        transition: .3s;
+    }
+}
+
+    .menu-list{
+        display: flex;
+        @media (max-width:578px) {
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .menu-item{
+            &:not(:first-child){
+                margin-left: 80px;
+                @media (max-width:768px) {
+                    margin-left: 40px;
+                }
+                @media (max-width:578px) {
+                    margin-left: 0;
+                    &:not(:first-child){
+                        margin-top: 20vh;
+                    }
+                }
+            }
+            .menu-link{
+                font-size: 17px;
+                color: inherit;
+                font-family: 'Ubuntu', serif;
+                font-weight: 700;
+                transition: padding .3s;
+                &:hover{
+                    padding-bottom: 5px;
+                    border-bottom: 2px dashed $white;
+                }
+                @media (max-width:578px) {
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+
+    #toogle-btn{
+        position: absolute;
+        z-index: 4;
+        right: 20px;
+        opacity: 0;
+        display: none;
+        @media (max-width:578px) {
+            display: block;
+        }
+    }
+
+    .toogle-label{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        padding-left: 9px;
+        padding-right: 9px;
+        position: relative;
+        z-index: 4;
+        background: #8522ff;
+        display: none;
+        @media (max-width:578px) {
+            display: block;
+        }
+        span{
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background: $white;
+            top:calc(50% - 2px);
+            &::before{
+                content: '';
+                position: absolute;
+                top: -5px;
+                width: 100%;
+                height: 2px;
+                background: $white;
+                transition: .3s;
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                top: 5px;
+                width: 100%;
+                height: 2px;
+                background: $white;
+                transition: .3s;
+            }
+            transition: .2s;
+            transition-delay: .2s;
+        }
+    }
+
+    #toogle-btn:checked ~ .menu{
+        top: 0;
+    }
+
+    #toogle-btn:checked ~ .toogle-label{
+        span{
+            &::before{
+                top: 0;
+                transform: rotate(90deg);
+            }
+
+            &::after{
+                top: 0;
+            }
+            transform: rotate(45deg);
+        }
+    }
